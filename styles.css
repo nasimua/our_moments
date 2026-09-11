@@ -61,6 +61,7 @@ body {
 .moments-supporting {
   max-width: 480px;
   margin: 0;
+  padding-right: 90px;
   font-size: 16px;
   line-height: 1.6;
 }
