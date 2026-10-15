@@ -105,6 +105,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.12em;
   color: var(--moments-gold);
+  text-align: center;
 }
 .more-than-kicker {
   font-size: 14px;
@@ -226,24 +227,38 @@ body {
   color: #fff;
 }
 .hero {
+  position: relative;
   display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 40px 0;
-  min-height: 560px;
+  align-items: stretch;
+  gap: 0;
+  margin: 0;
+  padding: 40px 0;
 }
 .special-effects-section {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 40px;
-  padding: 60px 120px;
+  gap: 0;
+  margin-block: 0;
+  padding: 150px 0;
   background-color: #000;
   color: #fff;
 }
 .special-effects-section .hero-image {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 50%;
+  height: auto;
+  flex: none;
   order: 1;
 }
 .special-effects-section .special-effects-copy {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 50%;
+  margin-left: 50%;
+  box-sizing: border-box;
+  padding: 0 clamp(32px, 7vw, 120px);
   order: 2;
   color: #fff;
 }
@@ -470,7 +485,25 @@ body {
 }
 .hero-copy,
 .hero-image {
-  flex: 1;
+  flex: 1 1 50%;
+  min-width: 0;
+}
+.hero-copy {
+  flex: 0 0 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px clamp(32px, 7vw, 120px);
+  box-sizing: border-box;
+  order: 1;
+}
+.hero-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  order: 2;
 }
 .hero-copy {
   color: #000;
@@ -495,7 +528,7 @@ body {
 .hero-title {
   margin: 0 0 22px;
   color: #000;
-  font-size: 40px;
+  font-size: 80px;
   font-weight: 500;
   line-height: 1.05;
 }
@@ -566,14 +599,12 @@ body {
 }
 .hero-image {
   min-height: 0;
-  border-radius: 25px;
   overflow: hidden;
 }
 .hero-image img {
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 4;
+  height: 100%;
   object-fit: cover;
 }
 header h1 {
@@ -662,8 +693,7 @@ a:hover {
 }
 
 /* Services sidebar layout */
-.services-hero,
-.about-hero {
+.page-hero {
   background-color: hsl(30, 23%, 95%);
   background: linear-gradient(
     0deg,
@@ -674,32 +704,27 @@ a:hover {
   padding: 80px 100px 80px;
   border-bottom: 1px solid rgba(191, 152, 88, 0.9);
 }
-.services-hero-inner,
-.about-hero-inner {
+.page-hero-inner {
   max-width: 1100px;
 }
-.services-hero .services-kicker,
-.about-hero .about-kicker {
+.page-hero-kicker {
   margin: 0 0 18px;
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.12em;
-  color: #000;
+  color: var(--moments-gold);
 }
-.services-hero-title,
-.about-hero-title {
+.page-hero-title {
   margin: 0;
   font-size: 5rem;
   line-height: 1.05;
   font-weight: 500;
   color: #000;
 }
-.services-hero-title span,
-.about-hero-title span {
+.page-hero-title span {
   color: #bf9858;
 }
-.services-hero-subheading,
-.about-hero-subheading {
+.page-hero-subheading {
   margin: 18px 0 0;
   max-width: 760px;
   font-size: 1.05rem;
@@ -915,6 +940,135 @@ a:hover {
   margin-bottom: 0;
 }
 
+.enquiry-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 70px;
+  padding: 80px 120px;
+  background-color: #fff;
+}
+.enquiry-copy {
+  flex: 2 1 0;
+  min-width: 0;
+}
+.enquiry-form {
+  flex: 3 1 0;
+  min-width: 0;
+  padding: 32px;
+  background-color: #f5f2ef;
+}
+.enquiry-kicker {
+  margin: 0 0 12px;
+  color: var(--moments-gold);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+.enquiry-copy h2 {
+  margin: 0 0 20px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+.enquiry-copy h2 span {
+  color: var(--moments-gold);
+}
+.enquiry-steps {
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+}
+.enquiry-steps li {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  column-gap: 1rem;
+  align-items: start;
+  padding: 16px 0;
+  line-height: 1.6;
+}
+.enquiry-steps li:first-child,
+.enquiry-steps li:last-child {
+  border-top: 1px solid var(--moments-gold);
+  border-bottom: 1px solid var(--moments-gold);
+}
+.enquiry-step-number {
+  color: var(--moments-gold);
+  font-weight: 600;
+}
+.enquiry-copy > p:not(.enquiry-kicker) {
+  margin: 0 0 20px;
+  line-height: 1.8;
+}
+.enquiry-copy a {
+  color: inherit;
+  text-decoration-color: var(--moments-gold);
+  text-underline-offset: 3px;
+}
+.enquiry-form-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 20px;
+}
+.enquiry-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.enquiry-field-full {
+  grid-column: 1 / -1;
+}
+.enquiry-field label {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.enquiry-field label span {
+  color: var(--moments-gold);
+}
+.enquiry-field input,
+.enquiry-field select,
+.enquiry-field textarea {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #b7aea5;
+  border-radius: 0;
+  padding: 12px 0;
+  background-color: transparent;
+  color: #000;
+  font: inherit;
+}
+.enquiry-field input::placeholder,
+.enquiry-field textarea::placeholder {
+  color: #756f69;
+  opacity: 1;
+}
+.enquiry-field textarea {
+  resize: vertical;
+}
+.enquiry-field input:focus,
+.enquiry-field select:focus,
+.enquiry-field textarea:focus {
+  border-bottom-width: 2px;
+  border-color: var(--moments-gold);
+  outline: 2px solid rgba(191, 152, 88, 0.2);
+  outline-offset: 2px;
+}
+.enquiry-submit {
+  margin-top: 24px;
+  border: 0;
+  padding: 14px 24px;
+  background-color: #bf9858;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+.enquiry-submit:hover {
+  border: 1px solid #bf9858;
+  padding: 13px 24px;
+  background-color: #fff;
+  color: #bf9858;
+}
+
 /* Responsive adjustments */
 @media (max-width: 1100px) {
   .content-padded {
@@ -925,22 +1079,54 @@ a:hover {
     padding-left: 32px;
     padding-right: 32px;
   }
-  .hero {
-    flex-direction: column;
-    align-items: stretch;
-  }
   .hero-copy,
-  .hero-image,
   .moments-copy {
     width: 100%;
-  }
-  .hero-image {
-    max-width: 720px;
-    margin: 0 auto;
   }
 }
 
 @media (max-width: 900px) {
+  .special-effects-section {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+  }
+  .special-effects-section .hero-image {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: min(60vw, 540px);
+  }
+  .special-effects-section .special-effects-copy {
+    flex-basis: auto;
+    width: 100%;
+    margin-left: 0;
+    padding: 48px 32px;
+  }
+  .hero {
+    flex-direction: column;
+    min-height: auto;
+    padding: 0;
+  }
+  .hero-copy {
+    flex-basis: auto;
+    padding: 48px 32px;
+    order: 2;
+  }
+  .hero-image {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    flex-basis: auto;
+    min-height: 0;
+    width: 100%;
+    height: min(60vw, 540px);
+    order: 1;
+  }
+  .hero-image img {
+    height: 100%;
+  }
   .services-page {
     flex-direction: column;
   }
@@ -955,6 +1141,19 @@ a:hover {
   .about-people {
     flex-direction: column;
     padding: 48px 24px;
+  }
+  .enquiry-section {
+    flex-direction: column;
+    gap: 40px;
+    padding: 48px 24px;
+  }
+  .enquiry-copy,
+  .enquiry-form {
+    flex: 0 1 auto;
+    width: 100%;
+  }
+  .enquiry-form {
+    padding: 24px;
   }
   .services-navbar .nav-items ul {
     flex-direction: row;
@@ -996,6 +1195,9 @@ a:hover {
 }
 
 @media (max-width: 600px) {
+  .enquiry-form-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
   .content {
     padding: 16px;
   }
@@ -1011,10 +1213,7 @@ a:hover {
     padding: 16px 12px;
   }
   .hero {
-    flex-direction: column;
-    align-items: stretch;
     gap: 17px;
-    min-height: auto;
   }
   .moments-section {
     flex-direction: column;
@@ -1023,11 +1222,13 @@ a:hover {
     min-height: auto;
   }
   .moments-title,
-  .hero-title,
   .services-title,
   .why-choose-us-title,
   .planning-title {
     font-size: 2.2rem;
+  }
+  .hero-title {
+    font-size: 4.4rem;
   }
   .planning-section {
     flex-direction: column;
@@ -1051,11 +1252,12 @@ a:hover {
   .hero-cta {
     width: min(180px, 100%);
   }
-  .hero-image,
-  .hero-image img {
-    min-height: 0;
-    height: auto;
-    aspect-ratio: 3 / 4;
+  .hero-image {
+    height: 75vw;
+    max-height: 480px;
+  }
+  .hero-copy {
+    padding: 32px 24px;
   }
   .hero-ctas {
     flex-wrap: wrap;
