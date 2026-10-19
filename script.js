@@ -1,5 +1,53 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   const navbars = document.querySelectorAll('.navbar');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (!reducedMotion.matches && 'IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('section').forEach(section => {
+      section.classList.add('scroll-reveal');
+      revealObserver.observe(section);
+    });
+  }
+
+  navbars.forEach(navbar => {
+    const menuToggle = navbar.querySelector('.menu-toggle');
+    const navContainer = navbar.querySelector('.nav-container');
+
+    if (!menuToggle || !navContainer) {
+      return;
+    }
+
+    function setMenuOpen(isOpen) {
+      navbar.classList.toggle('is-menu-open', isOpen);
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    }
+
+    menuToggle.addEventListener('click', () => {
+      setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    navContainer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => setMenuOpen(false));
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+        setMenuOpen(false);
+        menuToggle.focus();
+      }
+    });
+  });
+
   const serviceSections = document.querySelectorAll('.content > div[id]');
   const sidebarLinks = document.querySelectorAll('.services-navbar .nav-items a');
   const serviceHeadingLink = document.querySelector('.services-navbar h2 a');

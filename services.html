@@ -8,15 +8,27 @@
   </head>
   <body>
     <div class="navbar">
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="primary-navigation"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <div class="logo">
         <a href="index.html">Our Moments<br />Events Logo</a>
       </div>
-      <div class="nav-container">
-        <nav>
+      <div class="nav-container" id="primary-navigation">
+        <nav aria-label="Main navigation">
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="services.html" class="active">Services</a></li>
             <li><a href="about.html">About Us</a></li>
+            <li class="mobile-enquire"><a href="contact.html">Enquire</a></li>
           </ul>
         </nav>
       </div>
