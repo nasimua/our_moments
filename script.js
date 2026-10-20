@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const serviceSections = document.querySelectorAll('.content > div[id]');
   const sidebarLinks = document.querySelectorAll('.services-navbar .nav-items a');
   const serviceHeadingLink = document.querySelector('.services-navbar h2 a');
+  const mobileServiceSelect = document.querySelector('.mobile-service-select');
 
   function updateNavbarState() {
     const scrolled = window.scrollY > 12;
@@ -70,6 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = link.getAttribute('href').slice(1);
       link.classList.toggle('active', target === id);
     });
+    if (mobileServiceSelect) {
+      mobileServiceSelect.value = id || '';
+    }
   }
 
   if (serviceHeadingLink) {
@@ -90,6 +94,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  if (mobileServiceSelect) {
+    mobileServiceSelect.addEventListener('change', () => {
+      const target = mobileServiceSelect.value;
+      if (target) {
+        showSection(target);
+        setActiveLink(target);
+      }
+    });
+  }
 
   // Find the enquiry form and handle submissions only on pages that include it.
   const enquiryForm = document.querySelector('.enquiry-form');
